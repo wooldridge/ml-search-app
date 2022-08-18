@@ -4,7 +4,7 @@ config.project = {
   name: "ml-search-app"
 };
 
-config.path = "/PATH/TO/ml-search-app/setup/"; // include trailing "/"
+config.path = "/PATH/TO/ml-search-app/"; // include trailing "/"
 
 config.auth = {
   user: 'USERNAME',
@@ -13,6 +13,10 @@ config.auth = {
 };
 
 config.host = "localhost";
+
+config.server = {
+  port: 4000
+}
 
 config.databases = {
   content: {

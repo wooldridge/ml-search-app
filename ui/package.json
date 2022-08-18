@@ -1,5 +1,5 @@
 {
-  "name": "ml-search-app",
+  "name": "ml-search-app-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

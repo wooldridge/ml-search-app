@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../config');
 const express = require('express');
 const marklogic = require('marklogic');
 const digestRequest = require('request-digest')('admin', 'admin');
@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors());
 
-const port = config.port;
+const port = config.server.port;
 
 const db = marklogic.createDatabaseClient({
   host: config.host,

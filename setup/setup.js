@@ -1,4 +1,4 @@
-var config = require('./config'),
+var config = require('../config'),
     rp = require('request-promise');
     fs = require('fs'),
     colors = require('colors');
@@ -152,7 +152,7 @@ const createUser = async () => {
   }
 }
 
-let inputPath = config.path + 'input/persons/'
+let inputPath = config.path + 'setup/input/persons/'
     recordFiles = fs.readdirSync(inputPath),
     count = 0;
 
@@ -189,7 +189,7 @@ const loadRecords = async () => {
 }
 
 const loadSearchOptions = async () => {
-  let currFile = config.path + 'modules/search-options.xml';
+  let currFile = config.path + 'setup/modules/search-options.xml';
   let buffer = fs.readFileSync(currFile);
 
   let bufferString = buffer.toString().replace("%%ENTITYTYPE%%", config.entityType);
@@ -215,7 +215,7 @@ const loadSearchOptions = async () => {
 }
 
 const loadSearchLib = async () => {
-  let currFile = config.path + 'modules/configurable-search-lib.sjs';
+  let currFile = config.path + 'setup/modules/configurable-search-lib.sjs';
   let buffer = fs.readFileSync(currFile);
 
   let bufferString = buffer.toString().replace("%%ENTITYTYPE%%", config.entityType);
@@ -239,7 +239,7 @@ const loadSearchLib = async () => {
   }
 }
 
-// const configPath = config.path + 'config/'
+// const configPath = config.path + 'setup/config/'
 //     configFiles = fs.readdirSync(configPath),
 //     count = 0;
 
