@@ -189,26 +189,25 @@ const loadRecords = async () => {
 }
 
 const loadSearchOptions = async () => {
-  let currFile = config.path + 'setup/modules/search-options.xml';
+  let currFile = config.path + 'setup/search-options.xml';
   let buffer = fs.readFileSync(currFile);
 
   let bufferString = buffer.toString().replace("%%ENTITYTYPE%%", config.entityType);
   
-  let url = 'http://' + config.host + ':' + config.rest["rest-api"].port + '/v1/documents';
-  let db = '?database=' + config.databases.modules.name;
-
-  let uri = '&uri=' + '/explore-data/options/search-options.xml';
-  let perms = "&perm:rest-writer=read&perm:rest-writer=update&perm:rest-reader=update&perm:rest-admin=read&perm:rest-admin=update&perm:rest-admin=execute&perm:harmonized-reader=read&perm:harmonized-updater=update";
+  let url = 'http://' + config.host + ':' + config.rest["rest-api"].port + '/v1/config/query/search-options';
 
   const options = {
-    method: 'PUT',
-    uri: url + db + uri + perms,
+    method: 'POST',
+    uri: url, // + db+ uri + perms,
     body: bufferString,
-    auth: config.auth
+    auth: config.auth,
+    headers: {
+      'Content-Type': 'application/xml'
+    },
   };
   try {
     const response = await rp(options);
-    console.log('Module loaded: '.green + '/explore-data/options/search-options.xml');
+    console.log('Module loaded: '.green + '/v1/config/query/options');
   } catch (error) {
     handleError(error);
   }
@@ -279,17 +278,18 @@ const start = async () => {
   console.log(
     '                            SETUP STARTED                             '.gray.bold.inverse
   );
-  // await createDatabase(config.databases.content.name);
-  // await createDatabase(config.databases.modules.name);
-  // await getHost();
-  // await createForest(config.databases.content.name);
-  // await createForest(config.databases.modules.name);
-  // await createREST();
-  // await createXDBC();
-  // await createUser();
+  await createDatabase(config.databases.content.name);
+  await createDatabase(config.databases.modules.name);
+  await getHost();
+  await createForest(config.databases.content.name);
+  await createForest(config.databases.modules.name);
+  await createREST();
+  await createXDBC();
+  await createRole();
+  await createUser();
   console.log('Loading records...'.green);
   await loadRecords();
-  // await loadSearchOptions();
+  await loadSearchOptions();
   // await loadSearchLib();
   // await loadConfig();
   console.log(

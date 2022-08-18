@@ -46,37 +46,37 @@ config.xdbc = {
   port: 8006
 };
 
-// config.role = {
-//   "role-name": "minimal-search-role", 
-//   "privilege": [
-//     {
-//       "privilege-name": "xdmp:eval",
-//       "action": "http://marklogic.com/xdmp/privileges/xdmp-eval",
-//       "kind": "execute"
-//     },
-//     {
-//       "privilege-name": "xdmp:eval-in",
-//       "action": "http://marklogic.com/xdmp/privileges/xdmp-eval-in",
-//       "kind": "execute"
-//     },
-//     {
-//       "privilege-name": "unprotected-collections",
-//       "action": "http://marklogic.com/xdmp/privileges/unprotected-collections",
-//       "kind": "execute"
-//     },
-//     {
-//       "privilege-name": "unprotected-uri",
-//       "action": "http://marklogic.com/xdmp/privileges/unprotected-uri",
-//       "kind": "execute"
-//     }
-//   ]
-// }
+config.role = {
+  "role-name": config.project.name + "-role", 
+  "privilege": [
+    {
+      "privilege-name": "xdmp:eval",
+      "action": "http://marklogic.com/xdmp/privileges/xdmp-eval",
+      "kind": "execute"
+    },
+    {
+      "privilege-name": "xdmp:eval-in",
+      "action": "http://marklogic.com/xdmp/privileges/xdmp-eval-in",
+      "kind": "execute"
+    },
+    {
+      "privilege-name": "unprotected-collections",
+      "action": "http://marklogic.com/xdmp/privileges/unprotected-collections",
+      "kind": "execute"
+    },
+    {
+      "privilege-name": "unprotected-uri",
+      "action": "http://marklogic.com/xdmp/privileges/unprotected-uri",
+      "kind": "execute"
+    }
+  ]
+}
 
-// config.user = {
-//   "user-name": "minimal-search-user", 
-//   "password": "password",
-//   "role": [ "minimal-search-role", "rest-admin", "hadoop-user-all" ] 
-// }
+config.user = {
+  "user-name": config.project.name + "-user", 
+  "password": "password",
+  "role": [ config.project.name + "-role", "rest-admin", "hadoop-user-all" ] 
+}
 
 config.entityType = "person";
 
