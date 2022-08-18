@@ -20,7 +20,7 @@ const db = marklogic.createDatabaseClient({
 });
 const q = marklogic.queryBuilder;
 
-app.get('/search', (req, res) => {
+app.get('/searchNode', (req, res) => {
 
 	const whereClause = [
       q.collection("person")
@@ -63,7 +63,7 @@ const xmlToJson = xml => {
 	return json;
 };
 
-app.get('/search2', (req, res) => {
+app.get('/search', (req, res) => {
     let q = req.query.q ? req.query.q : "",
         length = req.query.length ? req.query.length : 10,
         sort = req.query.sort ? req.query.sort : 'descending';
@@ -74,7 +74,7 @@ app.get('/search2', (req, res) => {
       // const response = axiosDigest.get("http://localhost:8000/v1/search?format=json&q=John");
       digestRequest.request({
 		  host: 'http://localhost',
-		  path: '/v1/search?format=json&q=' + q, // + '&options=options',
+		  path: '/v1/search?format=json&q=' + q + '&options=search-options',
 		  port: config.rest['rest-api'].port,
 		  method: 'GET',
 		  headers: { Accept: "application/json" }
@@ -87,11 +87,18 @@ app.get('/search2', (req, res) => {
 		  console.log(response.statusCode);
 
 		  if (response && response.statusCode === 200) {
-	        //res.send(xmlToJson(body));
 	        const jObj = JSON.parse(body);
-          if (jObj.results[0]?.extracted && jObj.results[0].extracted.content) {
-            const json = xmlToJson(jObj.results[0].extracted.content[0]);
-            jObj.results[0].extracted.content[0] = json;
+          if (jObj.results && jObj.results.length) {
+            jObj.results.forEach((r, i) => {
+              if (r.extracted && r.extracted.content) {
+                // Convert extracted XML to JSON and replace for each result
+                const json = xmlToJson(r.extracted.content[0]);
+                jObj.results[i].extracted = json;
+                // Add entity type as property to each result
+                const entityType = Object.keys(json)[0];
+                jObj.results[i].entityType = entityType;
+              }
+            })
           }
 	        res.json(jObj);
 	      }
@@ -99,7 +106,7 @@ app.get('/search2', (req, res) => {
       
     } catch (error) {
       let message = error;
-      console.error("Error: /search2", message);
+      console.error("Error: /search", message);
     }
 
 });

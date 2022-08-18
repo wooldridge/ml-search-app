@@ -207,7 +207,7 @@ const loadSearchOptions = async () => {
   };
   try {
     const response = await rp(options);
-    console.log('Module loaded: '.green + '/v1/config/query/options');
+    console.log('Module loaded: '.green + '/v1/config/query/search-options');
   } catch (error) {
     handleError(error);
   }

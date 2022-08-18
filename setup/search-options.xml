@@ -8,7 +8,7 @@
       <search:json-property>person</search:json-property>
     </search:container>
   </search:constraint>
-  <search:constraint name="personId">
+  <!-- <search:constraint name="personId">
     <search:range type="xs:string" facet="true" collation="http://marklogic.com/collation/codepoint">
       <search:element name="personId" ns="" xmlns:es="http://marklogic.com/entity-services"/>
       <search:facet-option>limit=25</search:facet-option>
@@ -53,8 +53,9 @@
       <search:element name="area" ns="" xmlns:es="http://marklogic.com/entity-services"/>
       <search:facet-option>limit=25</search:facet-option>
     </search:range>
-  </search:constraint>
-  <search:operator name="sort">
+  </search:constraint> -->
+
+  <!-- <search:operator name="sort">
     <search:state name="person_createdOn_ascending">
       <search:sort-order type="xs:dateTime" direction="ascending">
 	<search:path-index xmlns:oex="http://www.w3.org/2000/xmlns/">/person/createdOn/ts</search:path-index>
@@ -75,7 +76,8 @@
 	<search:path-index xmlns:oex="http://www.w3.org/2000/xmlns/">/organization/createdOn/ts</search:path-index>
       </search:sort-order>
     </search:state>
-  </search:operator>
+  </search:operator> -->
+
   <!--
 Uncomment to return no results for a blank search, rather than the default of all results
  <search:term

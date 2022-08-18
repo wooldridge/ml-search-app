@@ -5,9 +5,8 @@ const ResultsList = (props) => {
     let result = [];
     const getResults  = () => {
         if (props.result?.results?.length) {
-            console.log("getResults", props.result.results);
             props.result.results.forEach((res, i) => {
-                result.push(<div key={i}>{res.uri}</div>)
+                result.push(<div key={i}>{res.extracted.person.nameGroup.fullname.value}</div>)
             });
         }
         return result;
