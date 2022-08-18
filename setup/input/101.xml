@@ -1,0 +1,6 @@
+<person>
+  <id>101</id>
+  <fullname>John Smith</fullname>
+  <created>2022-05-01T08:00:00Z</created>
+  <status>active</status>
+</person>
