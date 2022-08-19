@@ -16,7 +16,7 @@ Configure application:
 
 `cd ml-search-app`
 
-Copy `config_sample.js` and save as `config.js`. Edit settings as needed for your MarkLogic environment.
+Copy `config_sample.js` and save as `config.js`. Edit settings as needed for your MarkLogic environment (at a minimum, `config.path`, `config.auth.user`, and `config.auth.pass` values).
 
 Install setup and server dependencies:
 
