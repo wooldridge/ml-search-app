@@ -16,14 +16,21 @@ const App = () => {
 
     const [result, setResult] = useState("");
 
-    const getSearchResults = async (query) => { 
+    const getSearchResults = async (query, type) => { 
         try {
-          // Search using Node.js API
-          //const response = await axios.get("http://localhost:4000/searchNode?format=json&q=" + query, config);
-          // Search using Search API
-          const response = await axios.get("http://localhost:4000/search?q=" + query);
-          if (response && response.status === 200) {
-            return response.data;
+          if (type === "search") {
+            // Search using Search API
+            const response = await axios.get("http://localhost:4000/search?q=" + query);
+            if (response && response.status === 200) {
+              return response.data;
+            }
+          }
+          if (type === "node") {
+            // Search using Node.js API
+            const response = await axios.get("http://localhost:4000/searchWithNode?format=json&q=" + query); //, config);
+            if (response && response.status === 200) {
+              return response.data;
+            }
           }
         } catch (error) {
           let message = error;
@@ -32,9 +39,16 @@ const App = () => {
     };
 
     const handleSearch = (query) => {
-        const response = getSearchResults(query);
-        response.then(result => {
-            setResult(result);
+        const type = "search";
+
+        const response = getSearchResults(query, type);
+        response.then(response => {
+            if (type === "search") {
+              setResult(response.results);
+            }
+            if (type === "node") {
+              setResult(response);
+            }
           }).catch(error => {
             console.error(error);
           });

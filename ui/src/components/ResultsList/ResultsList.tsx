@@ -48,7 +48,7 @@ const ResultsList: React.FC<Props> = (props) => {
         <div key={"result-" + index} className="result">
             <div className="details">
             <div className="title no-entity"><Value id={results?.uri}>{titleValue}</Value></div>
-          <div className="title no-entity"><Value id={results?.uri}>{titleValue}</Value></div>
+            <div className="title no-entity"><Value id={results?.uri}>{titleValue}</Value></div>
                 <div className="subtitle no-entity"><ResultSnippet config={{}} data={results} /></div>
             </div>
         </div>
@@ -63,7 +63,7 @@ const ResultsList: React.FC<Props> = (props) => {
 
   const getResults = () => {
     // let results = searchContext.searchResults.result.map((results, index) => {
-    let results = props.data.results.map((results, index) => {
+    let results = props.data.map((results, index) => {
       // Get entity type via configured path (root relative if configured) or at default property "entityType"
       const entityType = props.config.entityType ? 
         (props.config.entityType.rootRelative ? getValByConfig(props.data, props.config.entityType) :
@@ -150,7 +150,7 @@ const ResultsList: React.FC<Props> = (props) => {
   // TODO removed Pagination below
   return (
     <div className="resultsList">
-      {(props.data?.results?.length) > 0 ? (
+      {(props.data?.length) > 0 ? (
         <div>
           {getResults()}
         </div>
