@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ResultsList = (props) => {
+const Results = (props) => {
 
     let result = [];
     const getResults  = () => {
@@ -16,4 +16,4 @@ const ResultsList = (props) => {
 
 };
 
-export default ResultsList;
+export default Results;

@@ -20,7 +20,7 @@ const db = marklogic.createDatabaseClient({
 });
 const q = marklogic.queryBuilder;
 
-app.get('/searchNode', (req, res) => {
+app.get('/searchWithNode', (req, res) => {
 
 	const whereClause = [
       q.collection("person")

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import ResultsList from './ResultsList';
+import Results from './Results';
 import SearchBox from './SearchBox';
+import ResultsList from "./components/ResultsList/ResultsList";
 import axios from 'axios';
+import searchConfig from './config/search.config'
 
 const el = document.getElementById('root');
 const root = ReactDOM.createRoot(el);
@@ -39,7 +41,8 @@ const App = () => {
         <div>
             <SearchBox label="Search!" handleSearch={handleSearch} />
             <hr />
-            <ResultsList result={result} />
+            <Results result={result} />
+            <ResultsList data={result} config={searchConfig.search.results.config} />
         </div>
     )
 }
