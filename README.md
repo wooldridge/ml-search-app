@@ -38,16 +38,18 @@ Run server:
 
 ## Set up and run UI
 
-Install UI dependencies: 
+In a new terminal, install UI dependencies: 
 
-`cd ../ui`
+`cd ml-search-app/ui`
 
 `npm install`
 
 Optionally edit UI configuration in `config` directory.
 
-Run UI application:
+Run UI application in development mode:
 
 `npm start`
 
+Open application in a browser:
 
+http://localhost:3000
