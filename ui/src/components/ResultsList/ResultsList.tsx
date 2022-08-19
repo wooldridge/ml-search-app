@@ -29,68 +29,6 @@ const COMPONENTS = {
   ResultActions: ResultActions
 };
 
-/**
- * Component for showing search results in list format.
- * Data payload provided by {@link SearchContext}.
- *
- * @component
- * @prop {object} config  Configuration object.
- * @prop {string} config.id  Path to ID. Passed as identifier to Detail view.
- * @prop {object} config.thumbnail  Thumbnail configuration object.
- * @prop {string} config.thumbnail.src  Path to thumbnail source URL.
- * @prop {string} config.thumbnail.width  Thumbnail width (as CSS width value).
- * @prop {string} config.thumbnail.height  Thumbnail height (as CSS width value).
- * @prop {string} config.title  Path to title associated with record. Clicking title in UI takes you to the
- * Detail view for that result.
- * @prop {object[]} config.items  Array of item configuration objects. Item can be value-based or component-based.
- * @prop {string} config.items.value  Path to value-based item.
- * @prop {string} config.items.className  CSS class name to apply to item value.
- * @prop {string} config.items.component  Name of component used to render component-based item.
- * @prop {object} config.items.config  Object of configuration properties for item component.
- * @prop {object} config.categories  Categories configuration object.
- * @prop {string} config.categories.value  Path to categories.
- * @prop {object} config.categories.colors  Key/value pairs specifying categories and their colors.
- * @prop {object} config.timestamp  Timestamp configuration object.
- * @prop {string} config.timestamp.value  Path to timestamp.
- * @prop {string} config.timestamp.label  Label prefix for timestamp.
- * @prop {string} config.status  Path to status associated with record.
- * @example
- * // Configuration
- * const searchResultsConfig = {
- *   id: "extracted.person.id",
- *   thumbnail: {
- *       src: "extracted.person.image",
- *       width: "70px",
- *       height: "70px"
- *   },
- *   title: "extracted.person.name",
- *   items: [
- *       // Component-based item example
- *       {
- *          component: "Address",
- *          config: {
- *            city: "extracted.person.address.city",
- *            state: "extracted.person.address.state"
- *          }
- *       },
- *       // Value-based item examples
- *       {value: "extracted.person.phone", className: "phone"},
- *       {value: "extracted.person.ssn"}
- *   ],
- *   categories: {
- *       value: "extracted.person.sources",
- *       colors: "sourcesColors"
- *   },
- *   timestamp: {
- *       value: "extracted.person.createdOn",
- *       label: "Time is"
- *   },
- *   status: "extracted.person.status"
- * }
- * @example
- * // JSX
- * <ResultsList config={searchResultsConfig} />
- */
 const ResultsList: React.FC<Props> = (props) => {
 
   const handleTitleClick = (id) => {

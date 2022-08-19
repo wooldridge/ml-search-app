@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Results from './Results';
-import SearchBox from './SearchBox';
+import Search from './Search';
 import ResultsList from "./components/ResultsList/ResultsList";
+import SearchBox from "./components/SearchBox/SearchBox";
 import axios from 'axios';
+import searchboxConfig from './config/searchbox.config'
 import searchConfig from './config/search.config'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const el = document.getElementById('root');
 const root = ReactDOM.createRoot(el);
@@ -37,12 +40,21 @@ const App = () => {
           });
     }
 
+    console.log(searchboxConfig)
+
     return (
         <div>
-            <SearchBox label="Search!" handleSearch={handleSearch} />
-            <hr />
-            <Results result={result} />
-            <ResultsList data={result} config={searchConfig.search.results.config} />
+            {/* <div style={{padding: '10px'}}>
+              <Search label="Search!" handleSearch={handleSearch} />
+              <hr />
+              <Results result={result} /> 
+            </div> */}
+            <header style={{backgroundColor: "rgb(43, 51, 60)", width: "100%", padding: "10px"}}>
+              <SearchBox config={searchboxConfig.searchbox} button="horizontal" handleSearch={handleSearch} width="600px" />
+            </header>
+            <div style={{padding: '10px'}}>
+              <ResultsList data={result} config={searchConfig.search.results.config} />
+            </div>
         </div>
     )
 }

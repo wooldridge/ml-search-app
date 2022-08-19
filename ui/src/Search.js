@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBox = (props) => {
+const Search = (props) => {
     const [query, setQuery] = useState("");
 
     const handleSearch = () => {
@@ -15,4 +15,4 @@ const SearchBox = (props) => {
     )
 }
 
-export default SearchBox;
+export default Search;
