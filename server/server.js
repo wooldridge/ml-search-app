@@ -20,36 +20,10 @@ const db = marklogic.createDatabaseClient({
 });
 const q = marklogic.queryBuilder;
 
-app.get('/searchWithNode', (req, res) => {
-
-	const whereClause = [
-      q.collection("person")
-  	];
-
-	db.documents.query(
-    q.where(whereClause)
-    .slice(parseInt(0), parseInt(20))
-  )
-  .result(function(documents) {
-      let results = [];
-      documents.forEach((document) => {
-        results.push(document)
-      });
-      console.log("Result count: " + results.length);
-      res.json(results);
-      }, (error) => {
-        console.dir(error);
-    });
-});
-
-// Optionally force paths to arrays
-const alwaysArray = [
-    //"person.contacts.contact"
-];
-
 // fast-xml-parser: https://github.com/NaturalIntelligence/fast-xml-parser
 const options = {
     ignoreAttributes: false,
+    ignoreDeclaration: true,
     attributeNamePrefix: "",
     allowBooleanAttributes: true,
     isArray: (name, jpath, isLeafNode, isAttribute) => { 
@@ -59,9 +33,46 @@ const options = {
 const parser = new XMLParser(options);
 
 const xmlToJson = xml => {
-	const json = parser.parse(xml);
-	return json;
+  const json = parser.parse(xml);
+  return json;
 };
+
+app.get('/searchWithNode', (req, res) => {
+
+  const qText = req.query.q ? req.query.q : '';
+
+	const whereClause = [
+    q.collection("person"),
+    q.parsedFrom(qText)
+  ];
+
+	db.documents.query(
+    q.where(whereClause)
+    .slice(parseInt(0), parseInt(20))
+  )
+  .result(function(documents) {
+      let results = [];
+      documents.forEach((document) => {
+        if (document.content) {
+          const json = xmlToJson(document.content);
+          document.content = json;
+          // Add entity type as property to each result
+          const entityType = Object.keys(json)[0];
+          document.entityType = entityType;
+        }
+        results.push(document)
+      });
+      res.json(results);
+      }, (error) => {
+        console.dir(error);
+    });
+
+});
+
+// Optionally force paths to arrays
+const alwaysArray = [
+    //"person.contacts.contact"
+];
 
 app.get('/search', (req, res) => {
     let q = req.query.q ? req.query.q : "",
@@ -102,7 +113,7 @@ app.get('/search', (req, res) => {
           }
 	        res.json(jObj);
 	      }
-		});
+		  });
       
     } catch (error) {
       let message = error;
