@@ -31,8 +31,6 @@ const SearchBox: React.FC<Props> = (props) => {
     selectedInit = found ? found.label : items[0].label;
   }
 
-  console.log("props.config", props.config);
-
   const [selected, setSelected] = useState<any>(selectedInit);
   const [qtext, setQtext] = useState<any>(qtextInit);
   const searchInputRef = React.createRef<HTMLInputElement>();

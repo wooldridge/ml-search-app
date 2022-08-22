@@ -5,6 +5,7 @@ import Search from './Search';
 import ResultsList from "./components/ResultsList/ResultsList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import axios from 'axios';
+import appConfig from './config/app.config';
 import searchboxConfig from './config/searchbox.config';
 import searchConfig from './config/search.config';
 import searchNodeConfig from './config/searchNode.config';
@@ -17,20 +18,26 @@ const App = () => {
 
     const [result, setResult] = useState("");
 
-    const api = "search";
+    const name = appConfig.name || "MarkLogic Search App";
+    const components = appConfig.components || "local";
+    const host = appConfig.server.host || "localhost";
+    const port = appConfig.server.port || 4000;
+    const api = appConfig.server.api || "search";
+
+    const baseUrl = "http://" + host + ":" + port;
 
     const getSearchResults = async (query, api) => { 
         try {
           if (api === "search") {
             // Search using Search API
-            const response = await axios.get("http://localhost:4000/search?q=" + query);
+            const response = await axios.get(baseUrl + "/search?q=" + query);
             if (response && response.status === 200) {
               return response.data;
             }
           }
           if (api === "node") {
             // Search using Node.js API
-            const response = await axios.get("http://localhost:4000/searchWithNode?format=json&q=" + query); //, config);
+            const response = await axios.get(baseUrl + "/searchWithNode?format=json&q=" + query); //, config);
             if (response && response.status === 200) {
               return response.data;
             }
@@ -60,23 +67,26 @@ const App = () => {
 
     return (
         <div>
-            {/* <div style={{padding: '10px'}}>
+            {components === "local" ?
+            <div style={{padding: '10px'}}>
               <Search label="Search!" handleSearch={handleSearch} />
               <hr />
               <Results result={result} /> 
-            </div> */}
-            <header style={{backgroundColor: "rgb(43, 51, 60)", width: "100%", padding: "10px"}}>
-              <SearchBox config={searchboxConfig.searchbox} button="horizontal" handleSearch={handleSearch} width="600px" />
-            </header>
-            <div style={{padding: '10px'}}>
-                {/* Access API endpoint based on "api" value */}
-                <ResultsList 
-                  data={result} 
-                  config={ api === "node" ? 
-                    searchNodeConfig.search.results.config : 
-                    searchConfig.search.results.config } 
-                />
-            </div>
+            </div> :
+            <div>
+              <header style={{backgroundColor: "rgb(43, 51, 60)", width: "100%", padding: "10px"}}>
+                <h1 style={{fontSize: "18px", color: "#CCC", fontWeight: "bold"}}>{name}</h1>
+                <SearchBox config={searchboxConfig.searchbox} button="horizontal" handleSearch={handleSearch} width="600px" />
+              </header>
+              <div style={{padding: '10px'}}>
+                  <ResultsList 
+                    data={result} 
+                    config={ api === "node" ? 
+                      searchNodeConfig.search.results.config : 
+                      searchConfig.search.results.config } 
+                  />
+              </div>
+            </div>}
         </div>
     )
 }

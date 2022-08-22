@@ -48,7 +48,7 @@ app.get('/searchWithNode', (req, res) => {
 
 	db.documents.query(
     q.where(whereClause)
-    .slice(parseInt(0), parseInt(20))
+    .slice(parseInt(0), parseInt(10))
   )
   .result(function(documents) {
       let results = [];
