@@ -190,11 +190,11 @@ const searchConfig  = {
                             "component": "ResultActions",
                             "config": {
                                 "id": "resultActions",
-                                "arrayPath": "person.actions.action",
+                                "arrayPath": "extracted.person.actions.action",
                                 "action": {
-                                "icon": "icon",
-                                "color": "color",
-                                "url": "url"
+                                    "icon": "icon",
+                                    "color": "color",
+                                    "url": "url"
                                 }
                             }
                         }

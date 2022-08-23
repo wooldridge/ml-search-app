@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Results from './Results';
 import Search from './Search';
-import ResultsList from "./components/ResultsList/ResultsList";
-import SearchBox from "./components/SearchBox/SearchBox";
 import axios from 'axios';
 import appConfig from './config/app.config';
 import searchboxConfig from './config/searchbox.config';
 import searchConfig from './config/search.config';
 import searchNodeConfig from './config/searchNode.config';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { SearchBox, ResultsList } from 'maftest-button';
 
 const el = document.getElementById('root');
 const root = ReactDOM.createRoot(el);
@@ -62,8 +61,6 @@ const App = () => {
             console.error(error);
           });
     }
-
-    console.log(searchboxConfig)
 
     return (
         <div>

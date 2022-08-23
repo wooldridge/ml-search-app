@@ -4,7 +4,7 @@ const appConfig  = {
 	server: {
 		host: "localhost",
 		port: 4000,
-		api: "node" // "search" for /v1/search, "node" for Node.js API
+		api: "search" // "search" for /v1/search, "node" for Node.js API
 	}
 }
 

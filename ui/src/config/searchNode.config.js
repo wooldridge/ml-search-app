@@ -190,7 +190,7 @@ const searchConfig  = {
                             "component": "ResultActions",
                             "config": {
                                 "id": "resultActions",
-                                "arrayPath": "person.actions.action",
+                                "arrayPath": "content.person.actions.action",
                                 "action": {
                                 "icon": "icon",
                                 "color": "color",
