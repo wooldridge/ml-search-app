@@ -1,11 +1,15 @@
 const config = require('../config');
 const express = require('express');
+const bodyParser = require('body-parser');
 const marklogic = require('marklogic');
 const digestRequest = require('request-digest')('admin', 'admin');
 const cors = require('cors');
 const {XMLParser} = require("fast-xml-parser");
 
 const app = express();
+
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json())
 
 app.use(cors());
 
@@ -118,6 +122,20 @@ app.get('/search', (req, res) => {
     } catch (error) {
       let message = error;
       console.error("Error: /search", message);
+    }
+
+});
+
+// http://localhost:3000/good-books-ds/_msearch?
+app.post('/good-books-ds/_msearch', (req, res) => {
+    try {
+        console.log("POST");
+        //console.log(JSON.stringify(req.body, null, 2));
+        console.log(req);
+        res.sendStatus(200);
+    } catch (error) {
+        let message = error;
+        console.error("Error: /good-books-ds/_msearch", message);
     }
 
 });

@@ -1,6 +1,6 @@
 const appConfig  = {  
 	name: "MarkLogic Search App",
-	components: "local", // "local" or "external"
+	components: "external", // "local" or "external"
 	server: {
 		host: "localhost",
 		port: 4000,
