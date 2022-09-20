@@ -5,7 +5,7 @@ import React from 'react';
 import { render } from "react-dom";
 import { ReactiveBase, DataSearch, ReactiveList, ResultCard } from "@appbaseio/reactivesearch";
 import appConfig from './config/app.config';
-import searchConfig from './config/search.config.js';
+import searchConfig from './config/searchML.config.js';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.scss";
 import ResultsList from './components/ResultsList/ResultsList';
