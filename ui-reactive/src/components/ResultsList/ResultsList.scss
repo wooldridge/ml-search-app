@@ -1,0 +1,154 @@
+.resultsList {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    .sortContainer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+        height: 30px;
+        padding-bottom: 5px;
+        border-bottom: solid 1px #ccc;
+        .thumbnailClean {
+            width: 70px;
+        }
+        .detailClean {
+            width: 93%;
+        }
+        .sortElements {
+            max-width: 260px;
+            display: flex;
+            grid-gap: 5px;
+            gap: 5px;
+            align-items: center;
+            min-width: 200px;
+            padding-left: 20px;
+            cursor: pointer;
+            .sortName {
+                font-size: 16px;
+                color: #394494;
+                font-weight: 700;
+                white-space: nowrap;
+            }
+            .sortIcons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                svg {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+    }
+    .result:hover {
+        background-color: #ebf9f6;
+    }
+    .result {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        border-bottom: solid 1px #ccc;
+        padding: 10px 0;
+        color: #333333;
+        .entityIcon {
+            font-size: 18px;
+            margin: 19px 16px 0 8px;
+        }
+        .thumbnail {
+            img {
+                width: 70px;
+                height: 70px;
+                margin-right: 20px;
+                border-radius: 4px;
+            }
+        }
+        .details {
+            position: relative;
+            width: 93%;
+            top: 10px;
+            div.title {
+                position: relative;
+                display: inline-block;
+                font-size: 18px;
+                font-weight: bold;
+                text-decoration: none;
+                color: #394494;
+                cursor: pointer;
+                > span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                }
+            }
+            div.title.no-entity {
+                padding-left: 10px;
+                cursor: pointer;
+                color: #394494;
+            }
+            div.subtitle.no-entity {
+                padding: 5px 0 16px 10px;
+            }
+            .phone {
+                width: 120px;
+                font-weight: bold;
+            }
+            .email {
+                width: 180px;
+                color: #394494;
+            }
+            .categories {
+                position: absolute;
+                top: -8px;
+                right: 0;
+                > .Chiclet {
+                    display: inline-block;
+                    padding: 1px 6px;
+                    border-radius: 4px;
+                    margin-left: 6px;
+                    font-size: 14px;
+                }
+            }
+        }
+        > div {
+            display: inline-block;
+        }
+        .actions {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-between;
+            max-width: 260px;
+            height: 80px;
+            padding: 0 10px 0 20px;
+            font-size: 15px;
+            .timestamp {
+                white-space: nowrap;
+                width: 170px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .icons {
+                align-self: flex-start;
+                white-space: nowrap;
+                .status {
+                    display: inline-block;
+                    width: 150px;
+                    // font-weight: bold;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    position: relative;
+                    top: 5px;
+                    padding-right: 4px;
+                }
+                svg {
+                    margin-left: 10px;
+                }
+                svg:nth-of-type(1) {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+.result:nth-of-type(1) {
+    border-top: solid 1px #ccc;
+}
