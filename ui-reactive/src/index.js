@@ -4,7 +4,7 @@ import React from 'react';
 // React pre-18
 import { render } from "react-dom";
 
-import { ReactiveBase, DataSearch, ReactiveList, MultiList } from "@appbaseio/reactivesearch";
+import { ReactiveBase, DataSearch, ReactiveList, MultiList, StateProvider } from "@appbaseio/reactivesearch";
 import appConfig from './config/app.config';
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -66,6 +66,7 @@ const App = () => {
                             innerClass={{
                                 input: 'search-input'
                             }}
+                            react={{ and: ["list-0"]}}
                         />
                     </div>
                 </header>
@@ -112,7 +113,7 @@ const App = () => {
                         <ReactiveList
                             componentId="results2"
                             dataField="_id"
-                            size={10}
+                            size={5}
                             pagination={true}
                             showResultStats={true}
                             react={{
@@ -126,6 +127,11 @@ const App = () => {
                                 />
                             )}
                         />
+                        {/* <StateProvider componentIds="results2" render={({ searchState }) => (
+                            <div>
+                                <pre>Search State: ${JSON.stringify(searchState, undefined, 2)}</pre>
+                            </div>
+                        )}/> */}
                     </div>
                 </div>
             </div>
