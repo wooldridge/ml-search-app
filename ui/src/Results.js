@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 const Results = (props) => {
+    mlContext = useContext(MLContext);
 
     let result = [];
     const getResults  = () => {
-        if (props.result?.length) {
-            props.result.forEach((res, i) => {
-                result.push(<div key={i}>{res.uri}</div>);
-            });
+        if (mlContext.results?.length) {
+          mlContext.results.forEach((res, i) => {
+            result.push(<div key={i}>{res.uri}</div>);
+          });
         }
         return result;
     };

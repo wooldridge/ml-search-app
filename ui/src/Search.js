@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import MLContext from './ML';
 
 const Search = (props) => {
+    mlContext = useContext(MLContext);
+
     const [query, setQuery] = useState("");
 
     const handleSearch = () => {
-        props.handleSearch(query);
+      mlContext.getSearch(query);
     }
 
     const handleEnter = (e) => {
